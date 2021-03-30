@@ -20,6 +20,7 @@ final class CardAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 	var direction: Direction
 	var configuration: CardConfiguration
 	var isInteractive = false
+    var onDismiss: (() -> Void)?
 
 	init(direction: Direction = .presentation, configuration: CardConfiguration) {
 		self.direction = direction
@@ -299,6 +300,7 @@ private extension CardAnimator {
 					}
 
 					transitionContext.completeTransition(true)
+                    self.onDismiss?()
 				}
 			}
 

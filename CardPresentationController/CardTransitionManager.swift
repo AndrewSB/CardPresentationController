@@ -12,9 +12,10 @@ import UIKit
 public final class CardTransitionManager: NSObject, UIViewControllerTransitioningDelegate {
 	private(set) var configuration: CardConfiguration
 
-    public init(configuration: CardConfiguration) {
+    public init(configuration: CardConfiguration, onDismiss: (() -> Void)? = .none) {
 		self.configuration = configuration
 		super.init()
+        cardAnimator.onDismiss = onDismiss
 	}
 
 	private lazy var cardAnimator = CardAnimator(configuration: configuration)
